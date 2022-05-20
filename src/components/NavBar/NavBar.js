@@ -14,9 +14,9 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import Membresias from '../../Pages/Membresias';
+import CartWidget from '../CartWidget/CartWidget';
 
-const pages = ['Membresias', 'Productos', 'Agenda tu hora', 'Servicios'];
+const pages = ['Membresias', 'Productos', 'Agenda tu hora', 'Servicios', <CartWidget/>];
 const settings = ['Perfil', 'cuenta', 'Agenda', 'Logout'];
 
 const ResponsiveAppBar = () => {
@@ -39,7 +39,7 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar className='appBar' position="fixed">
+    <AppBar className='appBar' position="static">
       <Container className='container' maxWidth="xxl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -118,7 +118,7 @@ const ResponsiveAppBar = () => {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-                href={Membresias}
+                href='#'
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
@@ -127,7 +127,7 @@ const ResponsiveAppBar = () => {
               </Button>
             ))}
           </Box>
-
+           
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

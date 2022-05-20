@@ -1,4 +1,24 @@
-.containerMem{
-  margin-top: 100px;
-
+*{
+  box-sizing: border-box;
+}
+.App{
+  text-align: center;
+}
+.generalContainer img{
+  width: 100%;
+}
+.bannerProductos{
+  
+  max-width: 100%;
+}
+.snackbarCustom{
+  position: fixex;
+  left: 10px;
+  bottom: 10px;
+  background: rgb(26, 126, 39);
+  border-radius: 4px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.007);
+  padding: 10px;
+  color: white;
+  
 }
