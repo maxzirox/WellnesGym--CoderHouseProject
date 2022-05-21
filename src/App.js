@@ -6,6 +6,7 @@ import Banner from './components/Banner/Banner'
 
 
 
+
 function App() {
   return (
     <div className="App">
@@ -15,7 +16,7 @@ function App() {
       </div>
       <h1>Bienvenidos a Wellness GYM</h1>
       <div>
-      <CardList/>
+        <CardList/>
       </div>
     </div>
   );

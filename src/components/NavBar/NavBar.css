@@ -11,5 +11,6 @@
 }
 
 .container{
+    position: fixed;
     background-color: orange;
 }
