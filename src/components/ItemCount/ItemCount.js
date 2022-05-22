@@ -14,10 +14,11 @@ const ItemCount = ({ stockPro, initial}) => {
               setCount(count - 1)
             }       
         }
-        const removeStock = () =>{
+        const onAdd = () =>{
             if(stock > 0 && stock >= count){
                 setStock( stock - count)
                 alert(`has agregado ${count} unidades al carrito`)
+                setCount(0)
             }else{
                 alert("sin stock")
             }
@@ -25,10 +26,10 @@ const ItemCount = ({ stockPro, initial}) => {
     return(
         <>
         <div className='countItem'>
-            <Button onClick={removeCount} disabled={count == 1} >-</Button>
+            <Button onClick={removeCount} disabled={count <= 1} >-</Button>
             <p>{count}</p>
-            <Button onClick={addCount}>+</Button>
-            <Button variant='contained' onClick={removeStock}>Agregar</Button>
+            <Button onClick={addCount} disabled={stock <= count}>+</Button>
+            <Button variant='contained' onClick={onAdd} disabled={stock < count}>Agregar</Button>
         </div>
         <p>Stock: {stock}</p>
         </>
