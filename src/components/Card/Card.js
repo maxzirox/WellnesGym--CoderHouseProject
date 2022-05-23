@@ -23,9 +23,7 @@ const CardItem = ({ imagen, titulo, precio, descripcion, stock }) => {
                     </div>
                     <p>{titulo}</p>
                     <span>$ {precio}</span>
-                    <ItemCount stockPro={stock} initial={1}>
-                        
-                    </ItemCount>
+                    <ItemCount stockPro={stock} initial={1}/>
                     <Button onClick={() => setOpen(true)} variant={'contained'}>Detalles</Button>
                     <Modal handleClose={handleClose} open={open}>
                         <img src={`./${imagen}`}/>

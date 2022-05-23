@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import { Button } from '@mui/material'
-import { stock } from '../Card/Card';
+
 
 const ItemCount = ({ stockPro, initial}) => {
 
