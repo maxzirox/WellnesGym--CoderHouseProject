@@ -1,0 +1,19 @@
+.contenedorItem{
+    display: flex;
+    flex-flow: column;
+}
+.titulo{
+    text-align: center;
+}
+.precio{
+    text-align: center;
+}
+.descripcion{
+    text-align: center;
+}
+.countItem{
+    margin-top: 30px;
+}
+.stock{
+    text-align: center;
+}

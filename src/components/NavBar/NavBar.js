@@ -14,8 +14,9 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import CartWidget from '../CartWidget/CartWidget';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
-const pages = ['Membresias', 'Productos', 'Agenda tu hora', 'Servicios', <CartWidget/>];
+const pages = [ 'Membresias', 'Productos', 'Agenda tu hora', 'Servicios', <CartWidget/>];
 const settings = ['Perfil', 'cuenta', 'Agenda', 'Logout'];
 
 const ResponsiveAppBar = () => {

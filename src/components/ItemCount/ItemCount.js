@@ -31,7 +31,7 @@ const ItemCount = ({ stockPro, initial}) => {
             <Button onClick={addCount} disabled={stock <= count}>+</Button>
             <Button variant='contained' onClick={onAdd} disabled={stock < count || stock == 0}>Agregar</Button>
         </div>
-        <p>Stock: {stock}</p>
+        <p className='stock'>Stock: {stock}</p>
         </>
         
     )
