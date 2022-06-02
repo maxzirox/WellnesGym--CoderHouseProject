@@ -29,7 +29,7 @@ const ItemCount = ({ stockPro, initial}) => {
             <Button onClick={removeCount} disabled={count <= 1} >-</Button>
             <p>{count}</p>
             <Button onClick={addCount} disabled={stock <= count}>+</Button>
-            <Button variant='contained' onClick={onAdd} disabled={stock < count || stock == 0}>Agregar</Button>
+            <Button variant='contained' style={{backgroundColor: 'orange'}} onClick={onAdd} disabled={stock < count || stock == 0}>Agregar</Button>
         </div>
         <p className='stock'>Stock: {stock}</p>
         </>

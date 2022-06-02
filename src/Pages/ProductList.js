@@ -9,7 +9,6 @@ const ProductList = () => {
     const { categoria } = useParams()
 
     useEffect( () => {
-        
         getProducts()
        .then( (response) => {
         setProducts([])
