@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import CardList from './CardList';
 import productos from '../../utils/productsMock'
+import './CardListContainer.css'
 
 const CardListContainer = () => {
     const [products, setProducts] = useState([])
@@ -48,7 +49,12 @@ const CardListContainer = () => {
     }, [])
 
     return(
+      <>
+        <h2>Productos destacados</h2>
+        <div className='contenedorCard'>
         <CardList products={productos}/>
+        </div>
+      </>
     )
 
 }

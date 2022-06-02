@@ -1,19 +1,20 @@
-.contenedorItem{
-    display: flex;
-    flex-flow: column;
+img {
+    width: 100%;
+    height: auto
 }
-.titulo{
-    text-align: center;
+
+p {
+    text-align: left;
 }
-.precio{
-    text-align: center;
+
+h2 {
+    padding-top: 30px;
 }
-.descripcion{
-    text-align: center;
+
+h3 {
+    margin: 0;
 }
-.countItem{
-    margin-top: 30px;
-}
-.stock{
-    text-align: center;
+
+.controlContainer {
+    padding: 20px 0;
 }

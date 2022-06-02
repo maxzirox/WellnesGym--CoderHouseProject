@@ -15,13 +15,24 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import CartWidget from '../CartWidget/CartWidget';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { useState } from 'react'
+import Fade from '@mui/material/Fade';
 
-const pages = [ 'Membresias', 'Productos', 'Agenda tu hora', 'Servicios', <CartWidget/>];
+const pages = [ 'Membresias', 'Productos', 'Agendar', 'Servicios', <CartWidget/>];
 const settings = ['Perfil', 'cuenta', 'Agenda', 'Logout'];
 
 const ResponsiveAppBar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -68,12 +79,14 @@ const ResponsiveAppBar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Link to={`/${page}`}  style={{  textDecoration: 'none', color: 'black'}}>{page}</Link>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
+          <Link to={'/'}>
           <img src={logo} className="logo"/>
+          </Link>
           <Typography
             variant="h5"
             noWrap
@@ -94,14 +107,57 @@ const ResponsiveAppBar = () => {
           
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
-                href='#'
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'black', fontWeight: 700, textShadow: '1px 1px yellow', display: 'block' }}
+               (page == 'Productos') ?
+                <><Button
+                style={{  marginRight: '10px', textDecoration: 'none', color: 'black', fontWeight: 700, textShadow: '1px 1px yellow', display: 'block' }}
+                id="fade-button"
+                aria-controls={open ? 'fade-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+                onClick={handleClick}
               >
                 {page}
-              </Button>
+              </Button><Menu
+                id="fade-menu"
+                MenuListProps={{
+                  'aria-labelledby': 'fade-button',
+                }}
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                TransitionComponent={Fade}
+              > <Link
+                    style={{ marginRight: '10px', textDecoration: 'none', color: 'black', fontWeight: 700, textShadow: '1px 1px yellow', display: 'block' }}
+                    className='linkPages'
+                    to={`/categorias/Pre-Entreno`}
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                  >
+                  <MenuItem  onClick={handleClose}>Pre-Entreno</MenuItem>
+                </Link>
+
+                <Link
+                    style={{ marginRight: '10px', textDecoration: 'none', color: 'black', fontWeight: 700, textShadow: '1px 1px yellow', display: 'block' }}
+                    className='linkPages'
+                    to={`/categorias/Post-Entreno`}
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                  >
+                  <MenuItem onClick={handleClose}>Post-Entreno</MenuItem>
+                </Link>
+                  
+                  
+                </Menu></>
+               :
+              <Link
+                style={{ marginRight: '10px', textDecoration: 'none', color: 'black', fontWeight: 700, textShadow: '1px 1px yellow', display: 'block' }}
+                className='linkPages'
+                to={`/${page}`}
+                key={page}
+                onClick={handleCloseNavMenu}
+              >
+               {page}
+              </Link>
             ))}
           </Box>
            

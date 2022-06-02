@@ -7,6 +7,11 @@ import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 import Membresias from './Pages/Membresias';
 import Detalle from './Pages/Detalle'
+import Inicio from './Pages/Inicio'
+import Servicios from './Pages/Servicios'
+import NotFound from './Pages/NotFound'
+import ProductList from './Pages/ProductList'
+import Agendar from './Pages/Agendar'
 
 
 
@@ -29,9 +34,14 @@ function App() {
       <Banner/>
       <h1>Bienvenidos a Wellness GYM</h1>
         <Routes>
-          <Route exact path="/productos" element={<CardListContainer/>} />
-          <Route exact path="/membresias" element={<Membresias />} />
-          <Route exact path="/productos/:id" element={<Detalle/>} />
+          <Route path="/productos" element={<CardListContainer/>} />
+          <Route path="/membresias" element={<Membresias />} />
+          <Route path="/productos/:id" element={<Detalle />} />
+          <Route path="/categorias/:categoria" element={<ProductList />} />
+          <Route path="/" element={<Inicio />} />
+          <Route path="/Servicios" element={<Servicios />} />
+          <Route path="/Agendar" element={<Agendar />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       
       

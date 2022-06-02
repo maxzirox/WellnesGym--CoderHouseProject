@@ -7,13 +7,13 @@ const CardList = ({products}) => {
    
     return(
       <>
-        <h2>Productos destacados</h2>
-        <Grid container spacing={2} className='generalContainer'>
+        
+        <Grid container spacing={1}  className='generalContainer'>
           {
             products.map( (producto) =>{
               return(
-                  <Grid item md={3} key={producto.id}>
-                    <CardItem titulo={producto.titulo} precio={producto.precio} imagen={producto.imagen} descripcion={producto.descripcion} stock={producto.stock}/>
+                  <Grid item lg={3} md={4} sm={6} xs={15} key={producto.id}>
+                    <CardItem titulo={producto.titulo} precio={producto.precio} imagen={producto.imagen} descripcion={producto.descripcion} stock={producto.stock} id={producto.id} categoria={producto.categoria}/>
                   </Grid>
               )
             })

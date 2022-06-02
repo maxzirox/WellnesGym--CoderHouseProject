@@ -1,5 +1,4 @@
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
+import { Container, Divider, Grid, Paper, Typography} from '@mui/material';
 import { Button } from '@mui/material'
 import Modal from '../Modal/Modal'
 import {useState} from 'react';
@@ -11,20 +10,34 @@ import './Item.css'
 const Item = ({ imagen, titulo, precio, descripcion, stock, id }) => {
 
     return(
-        <Card className="card" sx={{ minWidth: 275, minHeight: 300 }}>
-            <CardContent className='cardContenedor'>
-                <div className="contenedorItem">
-                    <h1 className='titulo'>{titulo}</h1>
-                    <div>
-                        <img src={`./${imagen}`} alt="Producto"/>
-                    </div>
-                    <h2 className='precio'>Valor ${precio}</h2>
-                    <h3 className='descripcion'>Descripcion</h3>
-                    <article className='descrpcion'>{descripcion}</article>
+        
+        <Container maxWidth='lg'>
+            
+            
+        <Paper  variant="outlined">
+        <h2>{titulo}</h2>
+        <Grid container spacing={2} alignItems="center" justifyContent="space-evenly" flexWrap='wrap'>
+        <div className="detail-product-image">
+                <img src={`/${imagen}`} alt="imgProduct"/>
+            </div>
+            <Grid >
+                <Paper elevation={4}>
+                <Container className='controlContainer'>
+                <Grid container direction="column" justifyContent="center" alignItems="flex-end">
+                
+                    <Grid textAlign='center'><h3> $ {precio}</h3></Grid>
                     <ItemCount stockPro={stock} initial={1}/>
-                </div>
-            </CardContent>
-        </Card>
+                </Grid>
+                </Container >
+                </Paper>
+            </Grid>
+        </Grid>
+        <h3>Descripción:</h3>
+        <Typography variant="body1" margin="20px">{descripcion}</Typography>
+        </Paper>
+        <Divider variant="middle" />
+    
+    </Container>
     )
 }
 //exportamos el componente

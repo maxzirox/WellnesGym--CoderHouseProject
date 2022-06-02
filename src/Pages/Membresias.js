@@ -44,7 +44,7 @@ const tiers = [
   {
     title: 'Full',
     subheader: 'Mas popular',
-    price: '25000',
+    price: '35000',
     description: [
       'Lunes a Sabado',
       'Cualquier Horario',
@@ -55,10 +55,10 @@ const tiers = [
     buttonVariant: 'contained',
   },
   {
-    title: 'Estuantes',
-    price: '20000',
+    title: 'Standar',
+    price: '25000',
     description: [
-      'Lunes a Sabado',
+      '3 dias a la semana',
       '1 vez al dia',
       'Personal trainer'
     ],
@@ -67,30 +67,7 @@ const tiers = [
   },
 ];
 
-const footers = [
-  {
-    title: 'Company',
-    description: ['Team', 'History', 'Contact us', 'Locations'],
-  },
-  {
-    title: 'Features',
-    description: [
-      'Cool stuff',
-      'Random feature',
-      'Team feature',
-      'Developer stuff',
-      'Another one',
-    ],
-  },
-  {
-    title: 'Resources',
-    description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
-  },
-  {
-    title: 'Legal',
-    description: ['Privacy policy', 'Terms of use'],
-  },
-];
+
 
 function Membresias() {
   return (
@@ -121,7 +98,7 @@ function Membresias() {
               item
               key={tier.title}
               xs={12}
-              sm={tier.title === 'Enterprise' ? 12 : 6}
+              sm={tier.title === 'Standar' ? 12 : 6}
               md={4}
             >
               <Card>
@@ -129,15 +106,12 @@ function Membresias() {
                   title={tier.title}
                   subheader={tier.subheader}
                   titleTypographyProps={{ align: 'center' }}
-                  action={tier.title === 'Pro' ? <StarIcon /> : null}
+                  action={tier.title === 'Full' ? <StarIcon /> : null}
                   subheaderTypographyProps={{
                     align: 'center',
                   }}
                   sx={{
-                    backgroundColor: (theme) =>
-                      theme.palette.mode === 'light'
-                        ? theme.palette.grey[200]
-                        : theme.palette.grey[700],
+                    backgroundColor: 'orange'
                   }}
                 />
                 <CardContent>
@@ -153,7 +127,7 @@ function Membresias() {
                       ${tier.price}
                     </Typography>
                     <Typography variant="h6" color="text.secondary">
-                      /mo
+                      /clp
                     </Typography>
                   </Box>
                   <ul>
@@ -170,8 +144,8 @@ function Membresias() {
                   </ul>
                 </CardContent>
                 <CardActions>
-                  <Button fullWidth variant={tier.buttonVariant}>
-                    {tier.buttonText}
+                  <Button  fullWidth variant={tier.buttonVariant}>
+                    {tier.buttonText} 
                   </Button>
                 </CardActions>
               </Card>
@@ -179,38 +153,9 @@ function Membresias() {
           ))}
         </Grid>
       </Container>
-      {/* Footer */}
-      <Container
-        maxWidth="md"
-        component="footer"
-        sx={{
-          borderTop: (theme) => `1px solid ${theme.palette.divider}`,
-          mt: 8,
-          py: [3, 6],
-        }}
-      >
-        <Grid container spacing={4} justifyContent="space-evenly">
-          {footers.map((footer) => (
-            <Grid item xs={6} sm={3} key={footer.title}>
-              <Typography variant="h6" color="text.primary" gutterBottom>
-                {footer.title}
-              </Typography>
-              <ul>
-                {footer.description.map((item) => (
-                  <li key={item}>
-                    <Link href="#" variant="subtitle1" color="text.secondary">
-                      {item}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </Grid>
-          ))}
-        </Grid>
-        <Copyright sx={{ mt: 5 }} />
-      </Container>
-      {/* End footer */}
+      
     </React.Fragment>
+
   );
 }
 
