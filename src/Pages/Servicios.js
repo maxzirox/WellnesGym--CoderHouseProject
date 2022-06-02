@@ -5,10 +5,10 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import serviciosMock from '../utils/serviciosMock'
-import { useState, useEffect } from 'react'
-import {Grid} from '@mui/material'
-import '../css/servicios.css'
+import serviciosMock from '../utils/serviciosMock';
+import { useState, useEffect } from 'react';
+import {Grid} from '@mui/material';
+import '../css/servicios.css';
 
 const Servicios = () => {
     const [servicio, setServicio] = useState([])
@@ -39,13 +39,14 @@ const Servicios = () => {
         
         { servicio.map((d, i) => (
                 
-                <Card className='cardServicios'  key={i} variant="outlined">
-                <Typography gutterBottom variant="h5" component="div">
+                <Card  key={i} variant="outlined" style={ {background: 'aliceblue', marginBottom: 40 }}>
+                  <div className='cardServ'>
+                <Typography gutterBottom variant="h4" component="div" color="text.primary">
                     {d.job}
                   </Typography>
                 <CardMedia
                   component="img"
-                  alt="green iguana"
+                  alt="persona"
                   height="140"
                   image={`${d.img}`}
                 />
@@ -58,9 +59,10 @@ const Servicios = () => {
                   </Typography>
                 </CardContent>
                 <CardActions className='botonesServ'>
-                  <Button className='btnServA' variant="outlined" size="small">Agendar</Button>
-                  <Button className='btnServB' variant="outlined" size="small">Mas info</Button>
+                  <Button className="btnA" variant="outlined" size="small">Agendar</Button>
+                  <Button className='botonB' variant="outlined" size="small">Mas info</Button>
                 </CardActions>
+                </div>
               </Card>
               
             

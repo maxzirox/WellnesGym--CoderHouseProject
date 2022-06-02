@@ -7,6 +7,7 @@ import {useState} from 'react';
 import ItemCount from '../ItemCount/ItemCount'
 import ItemDetailContainer from '../ItemDetailContainer/ItemDetailContainer'
 import { Link } from 'react-router-dom'
+import { style } from '@mui/system';
 
 //creamos un componente funcional en una constante funcional de tipo flecha y le pasamos propiedades
 const CardItem = ({ imagen, titulo, precio, descripcion, stock, id, categoria }) => {
@@ -30,8 +31,8 @@ const CardItem = ({ imagen, titulo, precio, descripcion, stock, id, categoria })
             <div className="cardItem">    
             <img src={`${imagen}`} alt="Producto"/>       
             <h3>{titulo}</h3>
-            <Button  variant={'contained'}>
-                <Link to={`/productos/${id}`} >Detalles</Link>
+            <Button  variant={'contained'} style={{backgroundColor: 'orange'}} >
+                <Link to={`/productos/${id}`} style={ {textDecoration: 'none', color: 'aliceblue' } } >Detalles</Link>
             </Button>        
             </div>
         </CardContent>

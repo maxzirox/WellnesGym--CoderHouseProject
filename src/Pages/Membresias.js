@@ -144,7 +144,7 @@ function Membresias() {
                   </ul>
                 </CardContent>
                 <CardActions>
-                  <Button  fullWidth variant={tier.buttonVariant}>
+                  <Button  fullWidth variant={tier.buttonVariant} style={{backgroundColor: 'orange', color: 'black'}}>
                     {tier.buttonText} 
                   </Button>
                 </CardActions>

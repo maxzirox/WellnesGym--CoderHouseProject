@@ -21,7 +21,7 @@ import Fade from '@mui/material/Fade';
 const pages = [ 'Membresias', 'Productos', 'Agendar', 'Servicios', <CartWidget/>];
 const settings = ['Perfil', 'cuenta', 'Agenda', 'Logout'];
 
-const ResponsiveAppBar = () => {
+const NavBar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -115,6 +115,7 @@ const ResponsiveAppBar = () => {
                 aria-haspopup="true"
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
+                key={page}
               >
                 {page}
               </Button><Menu
@@ -130,7 +131,7 @@ const ResponsiveAppBar = () => {
                     style={{ marginRight: '10px', textDecoration: 'none', color: 'black', fontWeight: 700, textShadow: '1px 1px yellow', display: 'block' }}
                     className='linkPages'
                     to={`/categorias/Pre-Entreno`}
-                    key={page}
+                    
                     onClick={handleCloseNavMenu}
                   >
                   <MenuItem  onClick={handleClose}>Pre-Entreno</MenuItem>
@@ -140,7 +141,7 @@ const ResponsiveAppBar = () => {
                     style={{ marginRight: '10px', textDecoration: 'none', color: 'black', fontWeight: 700, textShadow: '1px 1px yellow', display: 'block' }}
                     className='linkPages'
                     to={`/categorias/Post-Entreno`}
-                    key={page}
+                    
                     onClick={handleCloseNavMenu}
                   >
                   <MenuItem onClick={handleClose}>Post-Entreno</MenuItem>
@@ -153,7 +154,7 @@ const ResponsiveAppBar = () => {
                 style={{ marginRight: '10px', textDecoration: 'none', color: 'black', fontWeight: 700, textShadow: '1px 1px yellow', display: 'block' }}
                 className='linkPages'
                 to={`/${page}`}
-                key={page}
+        
                 onClick={handleCloseNavMenu}
               >
                {page}
@@ -195,4 +196,4 @@ const ResponsiveAppBar = () => {
     </AppBar>
   );
 };
-export default ResponsiveAppBar;
+export default NavBar;

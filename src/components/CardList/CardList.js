@@ -8,7 +8,7 @@ const CardList = ({products}) => {
     return(
       <>
         
-        <Grid container spacing={1}  className='generalContainer'>
+        <Grid container spacing={4}  className='generalContainer'>
           {
             products.map( (producto) =>{
               return(
