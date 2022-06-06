@@ -2,10 +2,19 @@ import CardContent from '@mui/material/CardContent';
 import { Button } from '@mui/material'
 import './Card.css'
 import { Link } from 'react-router-dom'
+import CartContext from '../../context/CartContext'
+import { useContext } from 'react'
 
 
 //creamos un componente funcional en una constante funcional de tipo flecha y le pasamos propiedades
 const CardItem = ({ imagen, titulo, precio, descripcion, stock, id, categoria }) => {
+
+    const { addProductToCart } = useContext(CartContext)
+    
+    const onAdd = () =>{
+        addProductToCart({ imagen, titulo, precio, descripcion, stock, id, categoria })
+    }
+    
     /*/en una constante de array indicamos el nombre del estado y la variable modificadora y le asignamos un estado  inicial con useState de react
     //hooks de estados
     const [open, setOpen] = useState(false)
@@ -28,7 +37,8 @@ const CardItem = ({ imagen, titulo, precio, descripcion, stock, id, categoria })
             <h3>{titulo}</h3>
             <Button  variant={'contained'} style={{backgroundColor: 'orange'}} >
                 <Link to={`/productos/${id}`} style={ {textDecoration: 'none', color: 'aliceblue' } } >Detalles</Link>
-            </Button>        
+            </Button>
+            <Button variant='contained' style={{ backgroundColor: '#FF5900' }} onClick={onAdd}>Agregar</Button>        
             </div>
         </CardContent>
         

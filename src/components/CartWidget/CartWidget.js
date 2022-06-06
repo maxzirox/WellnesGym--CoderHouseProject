@@ -52,7 +52,7 @@ const CartWidget = () =>{
                     </>
                 )}
                 {cartListItems.map((item) => {
-                    console.log("item desde cartwidget: ", item.categoria)
+                    console.log("item desde cartwidget: ", item)
                     return(<Paper
                         sx={{
                             p: 2,
@@ -61,25 +61,25 @@ const CartWidget = () =>{
                             flexGrow: 1,
                             backgroundColor: 'orange',
                         }}
-                        key={item.data.id} 
+                        key={item.id} 
                     >
                         <Grid container spacing={4}  >
                             <Grid item>
                                 <ButtonBase sx={{ width: 128, height: 128 }}>
-                                    <Img alt={item.data.titulo} src={`/${item.data.imagen}`} />
+                                    <Img alt={item.titulo} src={`/${item.imagen}`} />
                                 </ButtonBase>
                             </Grid>
                             <Grid item xs={12} sm container>
                                 <Grid item xs container direction="column" spacing={2}>
                                     <Grid item xs>
                                         <Typography gutterBottom variant="subtitle1" component="div">
-                                            {item.data.titulo}
+                                            {item.titulo}
                                         </Typography>
                                         <Typography variant="body2" gutterBottom>
-                                            {item.data.categoria}
+                                            {item.categoria}
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary">
-                                            Id: {item.data.id}
+                                            Id: {item.id}
                                         </Typography>
                                     </Grid>
                                     <Grid item>
@@ -90,7 +90,7 @@ const CartWidget = () =>{
                                 </Grid>
                                 <Grid item>
                                     <Typography variant="subtitle2" component="div">
-                                        {item.data.precio}clp
+                                        {item.precio}clp
                                     </Typography>
                                 </Grid>
                             </Grid>
