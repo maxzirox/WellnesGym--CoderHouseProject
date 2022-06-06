@@ -18,7 +18,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react'
 import Fade from '@mui/material/Fade';
 
-const pages = [ 'Membresias', 'Productos', 'Agendar', 'Servicios', <CartWidget/>];
+const pages = [ 'Membresias', 'Productos', 'Agendar', 'Servicios'];
 const settings = ['Perfil', 'cuenta', 'Agenda', 'Logout'];
 
 const NavBar = () => {
@@ -160,6 +160,7 @@ const NavBar = () => {
                {page}
               </Link>
             ))}
+             <CartWidget/>
           </Box>
            
           <Box sx={{ flexGrow: 0 }}>

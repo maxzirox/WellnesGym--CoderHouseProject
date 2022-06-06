@@ -1,9 +1,9 @@
 import { Container, Divider, Grid, Paper, Typography, Button } from '@mui/material';
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import ItemCount from '../ItemCount/ItemCount'
 import './Item.css'
 import { Link } from 'react-router-dom'
-import { maxWidth } from '@mui/system';
+import CartContext from '../../context/CartContext'
 
 
 const ItemDetail = ({ data }) => {
@@ -11,6 +11,8 @@ const ItemDetail = ({ data }) => {
     const [stock, setStock] = useState(0)
     const [count, setCount] = useState(1)
     const [showButton , setShowButton] = useState(false)
+    const { addProductToCart } = useContext(CartContext)
+
     
     
 
@@ -26,6 +28,8 @@ const ItemDetail = ({ data }) => {
             alert(`has agregado ${count} unidades al carrito`)
             setCount(1)
             setShowButton(true)
+            addProductToCart({data})
+            
         }else{
             alert("sin stock")
             setCount(1)

@@ -12,6 +12,7 @@ import Servicios from './Pages/Servicios'
 import NotFound from './Pages/NotFound'
 import ProductList from './Pages/ProductList'
 import Agendar from './Pages/Agendar'
+import { CartProvider } from './context/CartContext'
 
 
 
@@ -29,23 +30,23 @@ function App() {
   },[])*/
   return (
     <div className="App">
-      <BrowserRouter>
-      <NavBar/>
-      <Banner/>
-      <h1>Bienvenidos a Wellness GYM</h1>
-        <Routes>
-          <Route path="/productos" element={<CardListContainer/>} />
-          <Route path="/membresias" element={<Membresias />} />
-          <Route path="/productos/:id" element={<Detalle />} />
-          <Route path="/categorias/:categoria" element={<ProductList />} />
-          <Route path="/" element={<Inicio />} />
-          <Route path="/Servicios" element={<Servicios />} />
-          <Route path="/Agendar" element={<Agendar />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      
-      
-      </BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>
+          <NavBar/>
+          <Banner/>
+          <h1>Bienvenidos a Wellness GYM</h1>
+            <Routes>
+              <Route path="/productos" element={<CardListContainer/>} />
+              <Route path="/membresias" element={<Membresias />} />
+              <Route path="/productos/:id" element={<Detalle />} />
+              <Route path="/categorias/:categoria" element={<ProductList />} />
+              <Route path="/" element={<Inicio />} />
+              <Route path="/Servicios" element={<Servicios />} />
+              <Route path="/Agendar" element={<Agendar />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+        </BrowserRouter>
+      </CartProvider>
       
 
      
