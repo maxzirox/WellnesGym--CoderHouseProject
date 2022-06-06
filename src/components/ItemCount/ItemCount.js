@@ -1,37 +1,27 @@
-import {useState} from 'react';
+
 import { Button } from '@mui/material'
 
 
-const ItemCount = ({ stockPro, initial}) => {
+const ItemCount = ({ stock, actualizar, contador, mostrarBoton }) => {
 
-    const [stock, setStock] = useState(stockPro)
-    const [count, setCount] = useState(initial)
-        const addCount = () =>{
-            setCount(count + 1)
+        
+    const addCount = () =>{
+            actualizar(contador + 1)
         }
         const removeCount = () =>{
-            if(count > 0 ){
-              setCount(count - 1)
+            if(contador > 0 ){
+              actualizar(contador - 1)
             }       
         }
-        const onAdd = () =>{
-            if(stock > 0 && stock >= count){
-                setStock( stock - count)
-                alert(`has agregado ${count} unidades al carrito`)
-                setCount(0)
-            }else{
-                alert("sin stock")
-            }
-        }
+        
     return(
         <>
         <div className='countItem'>
-            <Button onClick={removeCount} disabled={count <= 1} >-</Button>
-            <p>{count}</p>
-            <Button onClick={addCount} disabled={stock <= count}>+</Button>
-            <Button variant='contained' style={{backgroundColor: 'orange'}} onClick={onAdd} disabled={stock < count || stock == 0}>Agregar</Button>
+           { mostrarBoton &&
+            <><Button onClick={removeCount} disabled={contador <= 1}>-</Button><p>{contador}</p><Button onClick={addCount} disabled={stock <= contador}>+</Button></>
+            }
         </div>
-        <p className='stock'>Stock: {stock}</p>
+        
         </>
         
     )

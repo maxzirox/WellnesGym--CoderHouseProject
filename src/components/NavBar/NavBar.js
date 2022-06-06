@@ -14,7 +14,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import CartWidget from '../CartWidget/CartWidget';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState } from 'react'
 import Fade from '@mui/material/Fade';
 
@@ -50,7 +50,7 @@ const NavBar = () => {
   };
 
   return (
-    <AppBar className='appBar' position="static">
+    <AppBar className='appBar' position="absolute">
       <Container className='container' maxWidth="xxl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex' }}}>
@@ -107,7 +107,7 @@ const NavBar = () => {
           
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-               (page == 'Productos') ?
+               (page === 'Productos') ?
                 <><Button
                 style={{  marginRight: '10px', textDecoration: 'none', color: 'black', fontWeight: 700, textShadow: '1px 1px yellow', display: 'block' }}
                 id="fade-button"

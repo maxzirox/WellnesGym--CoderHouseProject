@@ -1,6 +1,8 @@
+import Schedule from '../components/Schedule/Schedule'
+
 const Agendar = () => {
     return(
-        <h2> Agendar Horario </h2>
+        <Schedule/>
     )
 }
 

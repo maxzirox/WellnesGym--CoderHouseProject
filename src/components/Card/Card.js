@@ -1,13 +1,8 @@
-import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { Button } from '@mui/material'
 import './Card.css'
-import Modal from '../Modal/Modal'
-import {useState} from 'react';
-import ItemCount from '../ItemCount/ItemCount'
-import ItemDetailContainer from '../ItemDetailContainer/ItemDetailContainer'
 import { Link } from 'react-router-dom'
-import { style } from '@mui/system';
+
 
 //creamos un componente funcional en una constante funcional de tipo flecha y le pasamos propiedades
 const CardItem = ({ imagen, titulo, precio, descripcion, stock, id, categoria }) => {

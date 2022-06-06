@@ -1,9 +1,9 @@
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import CardListContainer from './components/CardList/CardListContainer';
-import SnackBar from './components/SnackBar/SnackBar';
+
 import Banner from './components/Banner/Banner'
-import { useEffect } from 'react';
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 import Membresias from './Pages/Membresias';
 import Detalle from './Pages/Detalle'
