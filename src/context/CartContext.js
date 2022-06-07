@@ -6,6 +6,7 @@ const CartContext = createContext()
 
 const CartProvider = ({children}) => {
     const [cartListItems, setCartListItems] = useState([])
+    const [count, setCount] = useState(0)
 
     const addProductToCart = (product) => {
         let isInCart = cartListItems.find(cartItem => cartItem.id === product.id)
@@ -24,11 +25,17 @@ const CartProvider = ({children}) => {
         setCartListItems([]);
     }
 
+    const addCountCart = (contador) => {
+        setCount(contador)
+        console.log("contador desde context: ", count)   
+    }
+
     const data = {
         cartListItems,
         addProductToCart,
         removeProductToCart,
-        removeAllCart
+        removeAllCart,
+        addCountCart
     }
     return (
         <CartContext.Provider value={data}>

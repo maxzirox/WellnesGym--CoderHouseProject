@@ -10,6 +10,7 @@ import Menu from '@mui/material/Menu';
 import { Button } from '@mui/material'
 import { useContext, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ItemCount from '../ItemCount/ItemCount';
 
 const Img = styled('img')({
   margin: 'auto',
@@ -20,6 +21,7 @@ const Img = styled('img')({
 
 const CartWidget = () =>{
     const { cartListItems } = useContext(CartContext)
+    const { count } = useContext(CartContext)
     const { removeAllCart } = useContext(CartContext)
     const { removeProductToCart } = useContext(CartContext)
     const [anchorEl, setAnchorEl] = useState(null);
@@ -84,6 +86,9 @@ const CartWidget = () =>{
                                         <Typography variant="body2" color="text.secondary">
                                             Id: {item.id}
                                         </Typography>
+                                        <Typography variant="body2" color="text.secondary">
+                                            Cantidad: {count}
+                                        </Typography>
                                     </Grid>
                                     <Grid item>
                                         <Typography sx={{ cursor: 'pointer' }} variant="body2">
@@ -97,8 +102,11 @@ const CartWidget = () =>{
                                     <Typography variant="subtitle2" component="div">
                                         {item.precio}clp
                                     </Typography>
+                                    
                                 </Grid>
+                                
                             </Grid>
+                            <ItemCount/>
                         </Grid>
                     </Paper>)
                 })}

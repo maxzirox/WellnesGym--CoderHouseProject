@@ -12,7 +12,7 @@ const ItemDetail = ({ data }) => {
     const [count, setCount] = useState(1)
     const [showButton , setShowButton] = useState(false)
     const { addProductToCart } = useContext(CartContext)
-
+    const { addCountCart } = useContext(CartContext)
     
     
 
@@ -25,10 +25,11 @@ const ItemDetail = ({ data }) => {
     const onAdd = () =>{
         if(stock > 0 && stock >= count){
             setStock( stock - count)
+            addCountCart(count)
             alert(`has agregado ${count} unidades al carrito`)
-            setCount(1)
             setShowButton(true)
             addProductToCart(data)
+            setCount(1)
             
         }else{
             alert("sin stock")
