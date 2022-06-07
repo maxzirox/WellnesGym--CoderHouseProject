@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
 import CartContext from '../../context/CartContext';
 import Menu from '@mui/material/Menu';
+import { Button } from '@mui/material'
 import { useContext, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -19,6 +20,8 @@ const Img = styled('img')({
 
 const CartWidget = () =>{
     const { cartListItems } = useContext(CartContext)
+    const { removeAllCart } = useContext(CartContext)
+    const { removeProductToCart } = useContext(CartContext)
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -46,7 +49,7 @@ const CartWidget = () =>{
                     'aria-labelledby': 'basic-button'
                 }}
             >
-            <div>
+            <div >
                 {cartListItems.length === 0 && (
                     
                     <p>No hay productos agregados</p>
@@ -84,7 +87,9 @@ const CartWidget = () =>{
                                     </Grid>
                                     <Grid item>
                                         <Typography sx={{ cursor: 'pointer' }} variant="body2">
-                                            <DeleteIcon />
+                                            <DeleteIcon 
+                                            
+                                            />
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -98,6 +103,7 @@ const CartWidget = () =>{
                     </Paper>)
                 })}
             </div>
+            <Button variant='outlined' style={{background: 'orange'}} onClick={removeAllCart}>Borrar Todo</Button>
             </Menu>
             </div>
             

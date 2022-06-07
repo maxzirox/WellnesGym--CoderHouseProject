@@ -10,13 +10,25 @@ const CartProvider = ({children}) => {
     const addProductToCart = (product) => {
         let isInCart = cartListItems.find(cartItem => cartItem.id === product.id)
         if(!isInCart){
+            console.log("se agrego al carrito: ", product)
         return setCartListItems(cartListItems =>[...cartListItems, product])
         }console.log("ya esta en el carrito")
     }
     
+    const removeProductToCart = (product) => {
+        const newCartListItems = cartListItems.find(item => item.id !== product.id);
+        setCartListItems(newCartListItems);
+    }
+
+    const removeAllCart = () => {
+        setCartListItems([]);
+    }
+
     const data = {
         cartListItems,
-        addProductToCart
+        addProductToCart,
+        removeProductToCart,
+        removeAllCart
     }
     return (
         <CartContext.Provider value={data}>
