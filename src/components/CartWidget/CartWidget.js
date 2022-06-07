@@ -29,7 +29,8 @@ const CartWidget = () =>{
     }
     return(
         
-            <><ShopIcon
+            <div>
+                <ShopIcon
                 color={'primary'}
                 aria-controls={open ? 'basic-menu' : undefined}
                 aria-haspopup="true"
@@ -47,12 +48,11 @@ const CartWidget = () =>{
             >
             <div>
                 {cartListItems.length === 0 && (
-                    <>
-                        <p>No hay productos agregados</p>
-                    </>
+                    
+                    <p>No hay productos agregados</p>
+                    
                 )}
                 {cartListItems.map((item) => {
-                    console.log("item desde cartwidget: ", item)
                     return(<Paper
                         sx={{
                             p: 2,
@@ -99,7 +99,7 @@ const CartWidget = () =>{
                 })}
             </div>
             </Menu>
-            </>
+            </div>
             
         
     )

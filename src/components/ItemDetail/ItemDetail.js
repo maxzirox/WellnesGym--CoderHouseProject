@@ -28,7 +28,7 @@ const ItemDetail = ({ data }) => {
             alert(`has agregado ${count} unidades al carrito`)
             setCount(1)
             setShowButton(true)
-            addProductToCart({data})
+            addProductToCart(data)
             
         }else{
             alert("sin stock")

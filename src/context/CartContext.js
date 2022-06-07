@@ -10,7 +10,6 @@ const CartProvider = ({children}) => {
     const addProductToCart = (product) => {
         let isInCart = cartListItems.find(cartItem => cartItem.id === product.id)
         if(!isInCart){
-            console.log("se agrego al carrito: ", product)
         return setCartListItems(cartListItems =>[...cartListItems, product])
         }console.log("ya esta en el carrito")
     }
