@@ -18,7 +18,7 @@ const CartProvider = ({children}) => {
     
     const removeProductToCart = (product) => {
         const newCartListItems = cartListItems.find(item => item.id !== product.id);
-        setCartListItems(newCartListItems);
+        setCartListItems(CartListItems =>[...newCartListItems, product]);
     }
 
     const removeAllCart = () => {

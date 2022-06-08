@@ -25,10 +25,10 @@ const ItemDetail = ({ data }) => {
     const onAdd = () =>{
         if(stock > 0 && stock >= count){
             setStock( stock - count)
-            addCountCart(count)
             alert(`has agregado ${count} unidades al carrito`)
             setShowButton(true)
             addProductToCart(data)
+            addCountCart(count)
             setCount(1)
             
         }else{
