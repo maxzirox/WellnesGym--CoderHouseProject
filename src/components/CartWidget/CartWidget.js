@@ -11,6 +11,7 @@ import { Button } from '@mui/material'
 import { useContext, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ItemCount from '../ItemCount/ItemCount';
+import { Conteo } from '../ItemDetail/ItemDetail'
 
 const Img = styled('img')({
   margin: 'auto',
@@ -21,7 +22,7 @@ const Img = styled('img')({
 
 const CartWidget = () =>{
     const { cartListItems } = useContext(CartContext)
-    const { count } = useContext(CartContext)
+    const { cantidad } = useContext(CartContext)
     const { removeAllCart } = useContext(CartContext)
     const { removeProductToCart } = useContext(CartContext)
     const [anchorEl, setAnchorEl] = useState(null);
@@ -87,20 +88,20 @@ const CartWidget = () =>{
                                             Id: {item.id}
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary">
-                                            Cantidad: {count}
+                                            Cantidad: {cantidad}
                                         </Typography>
                                     </Grid>
                                     <Grid item>
                                         <Typography sx={{ cursor: 'pointer' }} variant="body2">
-                                            <DeleteIcon 
-                                            
+                                            <Conteo 
+                                             data={item}
                                             />
                                         </Typography>
                                     </Grid>
                                 </Grid>
                                 <Grid item>
                                     <Typography variant="subtitle2" component="div">
-                                        {item.precio}clp
+                                        {item.precio * cantidad}clp
                                     </Typography>
                                     
                                 </Grid>
@@ -110,7 +111,9 @@ const CartWidget = () =>{
                         </Grid>
                     </Paper>)
                 })}
+                  
             </div>
+            
             <Button variant='outlined' style={{background: 'orange'}} onClick={removeAllCart}>Borrar Todo</Button>
             </Menu>
             </div>

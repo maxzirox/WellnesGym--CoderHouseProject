@@ -20,6 +20,7 @@ const CardItem = ({ imagen, titulo, precio, descripcion, stock, id, categoria })
 
     const onRemove = () => {
         removeProductToCart({ imagen, titulo, precio, descripcion, stock, id, categoria })
+        setShowButton(false)
     }
     
     /*/en una constante de array indicamos el nombre del estado y la variable modificadora y le asignamos un estado  inicial con useState de react
@@ -46,9 +47,9 @@ const CardItem = ({ imagen, titulo, precio, descripcion, stock, id, categoria })
                 <Link to={`/productos/${id}`} style={ {textDecoration: 'none', color: 'aliceblue' } } >Detalles</Link>
             </Button>
             { !showButton ?
-                    <Button variant='contained' style={{ backgroundColor: '#FF5900' }} onClick={onAdd}>Agregar</Button>
+                    <Button variant='contained' style={{ backgroundColor: '#FF5900', marginTop: 10 }} onClick={onAdd}>Agregar</Button>
                     :
-                    <Button variant='contained' style={{ backgroundColor: '#FA3004' }} onClick={onRemove}>Eliminar</Button>}
+                    <Button variant='contained' style={{ backgroundColor: '#FA3004' , marginTop: 10 }} onClick={onRemove}>Eliminar</Button>}
              
                      
             </div>
