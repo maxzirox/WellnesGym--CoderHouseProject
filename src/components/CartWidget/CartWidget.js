@@ -26,6 +26,7 @@ const CartWidget = () =>{
     const { removeAllCart } = useContext(CartContext)
     const { removeProductToCart } = useContext(CartContext)
     const [anchorEl, setAnchorEl] = useState(null);
+    const [contador, setContador] = useState(0)
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -33,8 +34,9 @@ const CartWidget = () =>{
     const handleClose = () => {
         setAnchorEl(null)
     }
+    
     return(
-        
+            
             <div>
                 <ShopIcon
                 color={'primary'}
@@ -59,7 +61,9 @@ const CartWidget = () =>{
                     
                 )}
                 {cartListItems.map((item) => {
-                    return(<Paper
+                console.log("contador desde cartWiget", cantidad)
+                return( 
+                    <Paper
                         sx={{
                             p: 2,
                             margin: 'auto',
@@ -92,11 +96,13 @@ const CartWidget = () =>{
                                         </Typography>
                                     </Grid>
                                     <Grid item>
-                                        <Typography sx={{ cursor: 'pointer' }} variant="body2">
-                                            <Conteo 
-                                             data={item}
+                                        
+                                            <ItemCount 
+                                             stock={item.stock}
+                                             actualizar={setContador}
+                                             contador={contador}
                                             />
-                                        </Typography>
+                                        
                                     </Grid>
                                 </Grid>
                                 <Grid item>
@@ -107,13 +113,17 @@ const CartWidget = () =>{
                                 </Grid>
                                 
                             </Grid>
-                            <ItemCount/>
+                            
                         </Grid>
                     </Paper>)
                 })}
                   
             </div>
-            
+            <ItemCount 
+                                             stock={cartListItems.stock}
+                                             actualizar={setContador}
+                                             contador={contador}
+                                            />
             <Button variant='outlined' style={{background: 'orange'}} onClick={removeAllCart}>Borrar Todo</Button>
             </Menu>
             </div>

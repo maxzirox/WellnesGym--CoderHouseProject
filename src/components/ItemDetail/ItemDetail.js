@@ -5,31 +5,7 @@ import './Item.css'
 import { Link } from 'react-router-dom'
 import CartContext from '../../context/CartContext'
 
-const Conteo = ({data}) => {
-    const [stock, setStock] = useState(0)
-    const [count, setCount] = useState(1)
-    const [showButton , setShowButton] = useState(false)
-    
-    
-    
 
-    useEffect( () => {
-        setStock(data.stock)
-     }, [data.stock])
-
-     
-
-    
-
-
-    return(
-        <div>
-            <ItemCount stock={stock} actualizar={setCount} contador={count} mostrarBoton={setShowButton} />  
-        </div>
-    )
-        
-    
-}
 const ItemDetail = ({ data }) => {
     
     const [showButton , setShowButton] = useState(false)
@@ -78,7 +54,7 @@ const ItemDetail = ({ data }) => {
                     </Grid>
                     
                     { !showButton ?
-                        <><Conteo data={data}/>
+                        <><ItemCount stock={stock} actualizar={setCount} contador={count} mostrarBoton={setShowButton} />
                         <Button variant='contained' style={{ backgroundColor: '#FF5900' }} onClick={onAdd} disabled={data.stock < count || data.stock == 0}>Agregar</Button></>  
                         :
                         <Button variant='contained' style={{backgroundColor: '#FF5900'}}> <Link to='/cart' style={{textDecoration: 'none', color: 'aliceblue'}}>Ir al carrito</Link></Button>}
@@ -95,4 +71,3 @@ const ItemDetail = ({ data }) => {
   )
   }
 export default ItemDetail
-export { Conteo }

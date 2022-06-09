@@ -11,19 +11,27 @@ const CartProvider = ({children}) => {
     const addProductToCart = (product) => {
         let isInCart = cartListItems.find(cartItem => cartItem.id === product.id)
         if(!isInCart){
-            console.log("se agrego al carrito: ", product)
-        return setCartListItems(cartListItems =>[...cartListItems, product])
-        }console.log("ya esta en el carrito")
+             setCartListItems(cartListItems =>[...cartListItems, product])
+        }else{
+            console.log("ya esta en el carrito")
+            setCantidad(cantidad + 1)
+         }
     }
     
     const removeProductToCart = (producto) => {
-        setCartListItems((product) => product.filter((item) => item.id !== producto.id))
-        setCantidad(0)
+        let isInCart = cartListItems.find(cartItem => cartItem.id === producto.id)
+        if(isInCart){
+        setCantidad(cantidad - 1)
+        if(cantidad == 1){
+            setCartListItems((product) => product.filter((item) => item.id !== producto.id))
+            setCantidad(1)
+        }
+        }
     }
 
     const removeAllCart = () => {
         setCartListItems([]);
-        setCantidad(0)
+        setCantidad(1)
     }
 
     const addCountCart = (contador) => {
@@ -36,7 +44,8 @@ const CartProvider = ({children}) => {
         addProductToCart,
         removeProductToCart,
         removeAllCart,
-        addCountCart
+        addCountCart,
+        cantidad
     }
     return (
         <CartContext.Provider value={data}>
