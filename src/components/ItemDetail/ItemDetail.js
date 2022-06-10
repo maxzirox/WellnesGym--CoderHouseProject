@@ -8,27 +8,21 @@ import CartContext from '../../context/CartContext'
 
 const ItemDetail = ({ data }) => {
     
-    const [stock, setStock] = useState(0)
-    const [count, setCount] = useState(1)
     const [showButton , setShowButton] = useState(false)
+    const [count, setCount] = useState(1)
+    const [stock, setStock] = useState(0)
     const { addProductToCart } = useContext(CartContext)
-    const { addCountCart } = useContext(CartContext)
-    
-    
 
     useEffect( () => {
         setStock(data.stock)
      }, [data.stock])
+    
 
-     
-
-    const onAdd = () =>{
+    const onAdd = (cantidad) =>{
         if(stock > 0 && stock >= count){
             setStock( stock - count)
-            alert(`has agregado ${count} unidades al carrito`)
             setShowButton(true)
-            addProductToCart(data)
-            addCountCart(count)
+            addProductToCart({...data, cantidad: count})
             setCount(1)
             
         }else{
@@ -54,13 +48,13 @@ const ItemDetail = ({ data }) => {
                     <Grid container direction="column" justifyContent="center" alignItems="center">
                     <Grid textAlign='center'><h6> Precio</h6></Grid>
                         <Grid textAlign='center'><h3> $ {data.precio}</h3></Grid>
-                        <Grid textAlign='center'><h4> stock: {stock}</h4></Grid>
-                        
                     </Grid>
+                    
                     { !showButton ?
-                    <><ItemCount stock={stock} actualizar={setCount} contador={count} mostrarBoton={setShowButton} /><Button variant='contained' style={{ backgroundColor: '#FF5900' }} onClick={onAdd} disabled={data.stock < count || data.stock == 0}>Agregar</Button></>  
-                    :
-                    <Button variant='contained' style={{backgroundColor: '#FF5900'}}> <Link to='/cart' style={{textDecoration: 'none', color: 'aliceblue'}}>Ir al carrito</Link></Button>}
+                        <><ItemCount stock={stock} actualizar={setCount} contador={count} mostrarBoton={setShowButton}/>
+                        <Button variant='contained' style={{ backgroundColor: '#FF5900' }} onClick={() => onAdd(count)} disabled={data.stock < count || data.stock == 0}>Agregar</Button></>  
+                        :
+                        <Button variant='contained' style={{backgroundColor: '#FF5900'}}> <Link to='/carrito' style={{textDecoration: 'none', color: 'aliceblue'}}>Ir al carrito</Link></Button>}
                 </Container >
               </Paper>
          </Grid>

@@ -9,18 +9,6 @@ import { useContext, useState } from 'react'
 //creamos un componente funcional en una constante funcional de tipo flecha y le pasamos propiedades
 const CardItem = ({ imagen, titulo, precio, descripcion, stock, id, categoria }) => {
 
-    const { addProductToCart } = useContext(CartContext)
-    const { removeProductToCart } = useContext(CartContext)
-    const [showButton , setShowButton] = useState(false)
-    
-    const onAdd = () =>{
-        addProductToCart({ imagen, titulo, precio, descripcion, stock, id, categoria })
-        setShowButton(true)
-    }
-
-    const onRemove = () => {
-        removeProductToCart({ imagen, titulo, precio, descripcion, stock, id, categoria })
-    }
     
     /*/en una constante de array indicamos el nombre del estado y la variable modificadora y le asignamos un estado  inicial con useState de react
     //hooks de estados
@@ -44,13 +32,7 @@ const CardItem = ({ imagen, titulo, precio, descripcion, stock, id, categoria })
             <h3>{titulo}</h3>
             <Button  variant={'contained'} style={{backgroundColor: 'orange'}} >
                 <Link to={`/productos/${id}`} style={ {textDecoration: 'none', color: 'aliceblue' } } >Detalles</Link>
-            </Button>
-            { !showButton ?
-                    <Button variant='contained' style={{ backgroundColor: '#FF5900' }} onClick={onAdd}>Agregar</Button>
-                    :
-                    <Button variant='contained' style={{ backgroundColor: '#FA3004' }} onClick={onRemove}>Eliminar</Button>}
-             
-                     
+            </Button>  
             </div>
         </CardContent>
         

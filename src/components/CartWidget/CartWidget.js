@@ -11,6 +11,9 @@ import { Button } from '@mui/material'
 import { useContext, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ItemCount from '../ItemCount/ItemCount';
+import { Link } from 'react-router-dom'
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 const Img = styled('img')({
   margin: 'auto',
@@ -21,10 +24,12 @@ const Img = styled('img')({
 
 const CartWidget = () =>{
     const { cartListItems } = useContext(CartContext)
-    const { count } = useContext(CartContext)
+    
     const { removeAllCart } = useContext(CartContext)
     const { removeProductToCart } = useContext(CartContext)
+    const { addProductToCart } = useContext(CartContext)
     const [anchorEl, setAnchorEl] = useState(null);
+    const [contador, setContador] = useState(0)
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -32,8 +37,13 @@ const CartWidget = () =>{
     const handleClose = () => {
         setAnchorEl(null)
     }
+    let total=0
+    let subTotal=0
+    let cantidad=0
+
+    
     return(
-        
+            
             <div>
                 <ShopIcon
                 color={'primary'}
@@ -54,11 +64,16 @@ const CartWidget = () =>{
             <div >
                 {cartListItems.length === 0 && (
                     
-                    <p>No hay productos agregados</p>
+                    <Button variant='outlined' style={{background: '#FF3A00', color: 'aliceblue'}}> <Link to='/productos' style={{textDecoration: 'none', color: 'aliceblue'}}>Vamos a comprar</Link></Button>
                     
                 )}
                 {cartListItems.map((item) => {
-                    return(<Paper
+                    subTotal= item.precio * item.cantidad
+                    total = subTotal + total
+                    
+                console.log("item de widget", item)
+                return( 
+                    <Paper
                         sx={{
                             p: 2,
                             margin: 'auto',
@@ -77,7 +92,7 @@ const CartWidget = () =>{
                             <Grid item xs={12} sm container>
                                 <Grid item xs container direction="column" spacing={2}>
                                     <Grid item xs>
-                                        <Typography gutterBottom variant="subtitle1" component="div">
+                                        <Typography gutterBottom variant="subtitle2" component="div">
                                             {item.titulo}
                                         </Typography>
                                         <Typography variant="body2" gutterBottom>
@@ -87,33 +102,65 @@ const CartWidget = () =>{
                                             Id: {item.id}
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary">
-                                            Cantidad: {count}
+                                            Cantidad: {item.cantidad}
                                         </Typography>
                                     </Grid>
-                                    <Grid item>
-                                        <Typography sx={{ cursor: 'pointer' }} variant="body2">
-                                            <DeleteIcon 
-                                            
+                                    <Grid item >
+                                        
+                                            <DeleteIcon
+                                            onClick={() => {removeProductToCart(item)}}
                                             />
-                                        </Typography>
+                                            <AddShoppingCartIcon
+                                            onClick={() => {addProductToCart(item)}}
+                                            />
+                                        
                                     </Grid>
                                 </Grid>
-                                <Grid item>
-                                    <Typography variant="subtitle2" component="div">
-                                        {item.precio}clp
-                                    </Typography>
-                                    
-                                </Grid>
-                                
+
                             </Grid>
-                            <ItemCount/>
                         </Grid>
+                            <Grid item xs container direction="row">
+                                <AttachMoneyIcon/>
+                                <Typography variant="subtitle" component="div" style={{ alignSelf: 'center' }}>
+                                     {item.precio * item.cantidad}
+                                </Typography>
+                                <Typography variant="subtitle4" component="div" style={{ alignSelf: 'center' }}>
+                                     clp
+                                </Typography>
+                            </Grid>
                     </Paper>)
-                })}
+                    
+                })
+                }
             </div>
-            <Button variant='outlined' style={{background: 'orange'}} onClick={removeAllCart}>Borrar Todo</Button>
-            </Menu>
-            </div>
+            {cartListItems.length !==0 &&(
+            <Paper
+                        sx={{
+                            p: 2,
+                            margin: 'auto',
+                            maxWidth: 500,
+                            flexGrow: 1,
+                            backgroundColor: 'orange',
+                        }}
+
+                    >
+             <Grid item>
+                <Typography variant="subtitle2" component="div">
+                    Precio total: {total}clp
+                </Typography>
+            </Grid >
+            <Grid >
+            <Button variant='outlined' color='error' startIcon={<DeleteIcon />} onClick={removeAllCart}>Borrar Todo</Button>
+            <Button variant='outlined' style={{background: 'orange', color: 'aliceblue'}}> <Link to='/carrito' style={{textDecoration: 'none', color: 'aliceblue'}}>Ir al carrito</Link></Button>
+            </Grid>
+            </Paper>
+            
+            )}
+            
+            </Menu>  
+            
+            
+        </div>
             
         
     )

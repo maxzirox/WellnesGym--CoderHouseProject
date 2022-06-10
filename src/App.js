@@ -12,6 +12,7 @@ import Servicios from './Pages/Servicios'
 import NotFound from './Pages/NotFound'
 import ProductList from './Pages/ProductList'
 import Agendar from './Pages/Agendar'
+import Carrito from './Pages/Carrito'
 import { CartProvider } from './context/CartContext'
 
 
@@ -43,6 +44,7 @@ function App() {
               <Route path="/" element={<Inicio />} />
               <Route path="/Servicios" element={<Servicios />} />
               <Route path="/Agendar" element={<Agendar />} />
+              <Route path="/carrito" element={<Carrito />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>
