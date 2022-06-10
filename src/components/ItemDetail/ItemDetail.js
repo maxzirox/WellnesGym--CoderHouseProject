@@ -18,14 +18,11 @@ const ItemDetail = ({ data }) => {
      }, [data.stock])
     
 
-    const onAdd = () =>{
+    const onAdd = (cantidad) =>{
         if(stock > 0 && stock >= count){
             setStock( stock - count)
-            alert(`has agregado ${count} unidades al carrito`)
             setShowButton(true)
-            addProductToCart(data)
-            
-         //   console.log("count desde onAdd ", count)
+            addProductToCart({...data, cantidad: count})
             setCount(1)
             
         }else{
@@ -54,10 +51,10 @@ const ItemDetail = ({ data }) => {
                     </Grid>
                     
                     { !showButton ?
-                        <><ItemCount stock={stock} actualizar={setCount} contador={count} mostrarBoton={setShowButton} />
-                        <Button variant='contained' style={{ backgroundColor: '#FF5900' }} onClick={onAdd} disabled={data.stock < count || data.stock == 0}>Agregar</Button></>  
+                        <><ItemCount stock={stock} actualizar={setCount} contador={count} mostrarBoton={setShowButton}/>
+                        <Button variant='contained' style={{ backgroundColor: '#FF5900' }} onClick={() => onAdd(count)} disabled={data.stock < count || data.stock == 0}>Agregar</Button></>  
                         :
-                        <Button variant='contained' style={{backgroundColor: '#FF5900'}}> <Link to='/cart' style={{textDecoration: 'none', color: 'aliceblue'}}>Ir al carrito</Link></Button>}
+                        <Button variant='contained' style={{backgroundColor: '#FF5900'}}> <Link to='/carrito' style={{textDecoration: 'none', color: 'aliceblue'}}>Ir al carrito</Link></Button>}
                 </Container >
               </Paper>
          </Grid>

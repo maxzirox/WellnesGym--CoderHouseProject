@@ -1,17 +1,16 @@
-import ShopIcon from '@mui/icons-material/ShoppingCart';
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
-import CartContext from '../../context/CartContext';
-import Menu from '@mui/material/Menu';
+import CartContext from '../context/CartContext';
 import { Button } from '@mui/material'
 import { useContext, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
-import ItemCount from '../ItemCount/ItemCount';
+import ItemCount from '../components/ItemCount/ItemCount';
 import { Link } from 'react-router-dom'
+
 
 const Img = styled('img')({
   margin: 'auto',
@@ -20,50 +19,29 @@ const Img = styled('img')({
   maxHeight: '100%',
 });
 
-const CartWidget = () =>{
+const Carrito = () =>{
     const { cartListItems } = useContext(CartContext)
     
     const { removeAllCart } = useContext(CartContext)
     const { removeProductToCart } = useContext(CartContext)
     const [anchorEl, setAnchorEl] = useState(null);
     const [contador, setContador] = useState(0)
-    const open = Boolean(anchorEl);
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    }
-    const handleClose = () => {
-        setAnchorEl(null)
-    }
-    const [total, setTotal] = useState([])
     
     return(
             
+            
+            <>
+            <h1>Carrito de compra</h1>
+            
             <div>
-                <ShopIcon
-                color={'primary'}
-                aria-controls={open ? 'basic-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-                onClick={handleClick}
-            />
-            <Menu
-                id="basic-Menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                    'aria-labelledby': 'basic-button'
-                }}
-            >
-            <div >
-                {cartListItems.length === 0 && (
-                    
-                    <p>No hay productos agregados</p>
-                    
-                )}
-                {cartListItems.map((item) => {
-                console.log("item de widget", item)
-                return( 
+            {cartListItems.length === 0 && (
+
+                <p>No hay productos agregados</p>
+
+            )}
+            {cartListItems.map((item) => {
+                console.log("item de widget", item);
+                return (
                     <Paper
                         sx={{
                             p: 2,
@@ -72,9 +50,9 @@ const CartWidget = () =>{
                             flexGrow: 1,
                             backgroundColor: 'orange',
                         }}
-                        key={item.id} 
+                        key={item.id}
                     >
-                        <Grid container spacing={4}  >
+                        <Grid container spacing={4}>
                             <Grid item>
                                 <ButtonBase sx={{ width: 128, height: 128 }}>
                                     <Img alt={item.titulo} src={`/${item.imagen}`} />
@@ -97,36 +75,35 @@ const CartWidget = () =>{
                                         </Typography>
                                     </Grid>
                                     <Grid item>
-                                        
-                                            <DeleteIcon
-                                            onClick={() => {removeProductToCart(item)}}
-                                            />
-                                        
+                                        <DeleteIcon
+                                            onClick={() => removeProductToCart(item)} />
                                     </Grid>
                                 </Grid>
                                 <Grid item>
                                     <Typography variant="subtitle2" component="div">
                                         {item.precio * item.cantidad}clp
-                                        
                                     </Typography>
-                                     
+
                                 </Grid>
-                                
+
                             </Grid>
-                            
+
                         </Grid>
-                    </Paper>)
-                })}
-                  
-            </div>
-             <div><p>Total: {total}</p></div>
-            <Button variant='outlined' style={{background: 'red', color: 'aliceblue'}} onClick={removeAllCart}>Borrar Todo</Button>
-            <Button variant='outlined' style={{background: 'orange', color: 'aliceblue'}}> <Link to='/carrito' style={{textDecoration: 'none', color: 'aliceblue'}}>Ir al carrito</Link></Button>
-            </Menu>
-            </div>
+                    </Paper>);
+            })}
+
+        </div>
+            <ItemCount
+                stock={cartListItems.stock}
+                actualizar={setContador}
+                contador={contador} 
+            />
+                <Button variant='outlined' style={{ background: 'red', color: 'white'}} onClick={removeAllCart}>Borrar Todo</Button>
+                <Button variant='outlined' style={{ background: 'orange', color: 'white', marginLeft: 10}}>Pagar</Button></>
+
             
         
     )
 }
 
-export default CartWidget
+export default Carrito

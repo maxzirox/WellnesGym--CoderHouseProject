@@ -12,6 +12,7 @@ const CartProvider = ({children}) => {
         let isInCart = cartListItems.find(cartItem => cartItem.id === product.id)
         if(!isInCart){
              setCartListItems(cartListItems =>[...cartListItems, product])
+             console.log("producto agregado: ", product)
         }else{
             console.log("ya esta en el carrito")
             setCantidad(cantidad + 1)
@@ -20,13 +21,10 @@ const CartProvider = ({children}) => {
     
     const removeProductToCart = (producto) => {
         let isInCart = cartListItems.find(cartItem => cartItem.id === producto.id)
-        if(isInCart){
-        setCantidad(cantidad - 1)
-        if(cantidad == 1){
             setCartListItems((product) => product.filter((item) => item.id !== producto.id))
             setCantidad(1)
-        }
-        }
+        
+        
     }
 
     const removeAllCart = () => {
