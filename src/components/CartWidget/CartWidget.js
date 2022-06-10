@@ -34,7 +34,8 @@ const CartWidget = () =>{
     const handleClose = () => {
         setAnchorEl(null)
     }
-    const [total, setTotal] = useState([])
+    let total=0
+    let subTotal=0
     
     return(
             
@@ -62,6 +63,8 @@ const CartWidget = () =>{
                     
                 )}
                 {cartListItems.map((item) => {
+                    subTotal= item.precio * item.cantidad
+                    total = subTotal + total
                 console.log("item de widget", item)
                 return( 
                     <Paper
@@ -104,22 +107,23 @@ const CartWidget = () =>{
                                         
                                     </Grid>
                                 </Grid>
-                                <Grid item>
-                                    <Typography variant="subtitle2" component="div">
-                                        {item.precio * item.cantidad}clp
-                                        
-                                    </Typography>
-                                     
-                                </Grid>
-                                
+
                             </Grid>
-                            
                         </Grid>
+                        <Grid item>
+                                    <Typography variant="subtitle2" component="div">
+                                        Precio: {item.precio * item.cantidad}clp
+                                    </Typography>
+                                </Grid>
                     </Paper>)
                 })}
                   
             </div>
-             <div><p>Total: {total}</p></div>
+            <Grid item>
+                                    <Typography variant="subtitle2" component="div">
+                                       Precio total: {total}clp
+                                    </Typography>
+                                </Grid>
             <Button variant='outlined' style={{background: 'red', color: 'aliceblue'}} onClick={removeAllCart}>Borrar Todo</Button>
             <Button variant='outlined' style={{background: 'orange', color: 'aliceblue'}}> <Link to='/carrito' style={{textDecoration: 'none', color: 'aliceblue'}}>Ir al carrito</Link></Button>
             </Menu>
