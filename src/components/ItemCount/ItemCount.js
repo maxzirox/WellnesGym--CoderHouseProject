@@ -6,12 +6,12 @@ import CartContext from '../../context/CartContext'
 
 const ItemCount = ({ stock, actualizar, contador, mostrarBoton }) => {
 
-    const { addCountCart } = useContext(CartContext)
+ 
     
 
     const addCount = () =>{
             actualizar(contador + 1)
-            addCountCart(contador + 1)
+            
         }
         const removeCount = () =>{
             if(contador > 0 ){

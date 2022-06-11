@@ -15,8 +15,9 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import CartWidget from '../CartWidget/CartWidget';
 import { Link } from 'react-router-dom';
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import Fade from '@mui/material/Fade';
+import CartContext from '../../context/CartContext';
 
 const pages = [ 'Membresias', 'Productos', 'Agendar', 'Servicios'];
 const settings = ['Perfil', 'cuenta', 'Agenda', 'Logout'];
@@ -24,6 +25,7 @@ const settings = ['Perfil', 'cuenta', 'Agenda', 'Logout'];
 const NavBar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const { cartListItems } = useContext(CartContext)
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -160,7 +162,12 @@ const NavBar = () => {
                {page}
               </Link>
             ))}
-             <CartWidget/>
+            {cartListItems.length === 1 && (
+                    
+                    <CartWidget/>
+                    
+                )}
+             
           </Box>
            
           <Box sx={{ flexGrow: 0 }}>
