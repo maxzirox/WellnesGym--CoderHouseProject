@@ -1,6 +1,8 @@
 import CardList from '../components/CardList/CardList'
 import {useState, useEffect} from 'react';
-import productos from '../utils/productsMock'
+import {  doc, getDocs } from 'firebase/firestore'
+import { collection, query, where } from "firebase/firestore";
+import dataBase from '../utils/firebaseConfig'
 import { useParams } from 'react-router-dom'
 
 
@@ -8,18 +10,14 @@ const ProductList = () => {
     const [products, setProducts] = useState([])
     const { categoria } = useParams()
 
-    useEffect( () => {
-        getProducts()
-       .then( (response) => {
-        setProducts([])
-        filtrarCategoria(response)
-    })   
-    }, [categoria])
-
-    const getProducts = () => {
-        return new Promise( (resolve, reject) => {
-            resolve(productos)
+    const getProducts = async () => {
+        const productSnapshot = await getDocs(collection(dataBase, 'productos'))
+        const productList = productSnapshot.docs.map((item) => {
+            let product = item.data()
+            product.id = item.id
+            return product
         })
+        return productList
     }
 
     const filtrarCategoria = (arrayProductos) => {
@@ -30,13 +28,23 @@ const ProductList = () => {
         })
     }
 
+    useEffect( () => {
+        getProducts()
+        .then( (response) => {
+            setProducts([])
+            filtrarCategoria(response)
+            })
+
+         }, [categoria])
+
     return(
-        <>
-        <h2>Suplementos de {categoria}</h2>
+        
+        
         <div>
+        <h2>Suplementos de {categoria}</h2>
         <CardList products={products}/>
         </div>
-        </>
+        
     )
 }
 

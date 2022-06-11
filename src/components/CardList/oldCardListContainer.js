@@ -1,26 +1,22 @@
 import {useState, useEffect} from 'react';
 import CardList from './CardList';
+import productos from '../../utils/productsMock'
 import './CardListContainer.css'
-import { collection, doc, getDocs } from 'firebase/firestore'
-import dataBase from '../../utils/firebaseConfig'
 
 const CardListContainer = () => {
     const [products, setProducts] = useState([])
     const [stock, setStock] = useState(10)
-            
-    const getProducts = async () => {
-        //creamos un snapshot  y le asignamos el metodo getDocs que nos traera un meotodo collection 
-        //que nos devuelve la base de datos con nuestra coleccion productos desde nuestra base de datos por medio de un await
-        const productSnapshot = await getDocs(collection(dataBase, 'productos'))
-        const productList = productSnapshot.docs.map((item) => {
-            let product = item.data()
-            product.id = item.id
-            return product
-        })
-        return productList
-    }
-  
     
+
+    const getProducts = () => {
+      //creamos una promesa con una funcion flecha que le pasamos 2 parametros resolve y reject
+      //que se encargaran en el caso de resolve devolver que se ejecuto correctamente o de lo contrario un reject
+      return new Promise((resolve, reject) => {
+        setTimeout(() =>{
+          resolve(productos)
+        }, 2000)
+      })
+    }
     /*/otra forma de llamar y utilizar una promesa con una funcion asyncronica
     async function getProductsAsincrono(){
       try{
@@ -53,13 +49,12 @@ const CardListContainer = () => {
     }, [])
 
     return(
-      
-        
-        <div className='contenedorCard'>
+      <>
         <h2>Productos destacados</h2>
-        <CardList products={products}/>
+        <div className='contenedorCard'>
+        <CardList products={productos}/>
         </div>
-      
+      </>
     )
 
 }

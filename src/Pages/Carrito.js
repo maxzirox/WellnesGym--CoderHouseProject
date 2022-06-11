@@ -73,9 +73,7 @@ const Carrito = () =>{
                                         <Typography variant="body2" gutterBottom>
                                             {item.categoria}
                                         </Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            Id: {item.id}
-                                        </Typography>
+                                        
                                         <Typography variant="body2" color="text.secondary">
                                             Cantidad: {item.cantidad}
                                         </Typography>

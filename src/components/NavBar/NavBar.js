@@ -84,6 +84,11 @@ const NavBar = () => {
                   <Link to={`/${page}`}  style={{  textDecoration: 'none', color: 'black'}}>{page}</Link>
                 </MenuItem>
               ))}
+              {cartListItems.length === 1 && (
+                    
+                    <CartWidget/>
+                    
+                )}
             </Menu>
           </Box>
           <Link to={'/'}>
@@ -107,17 +112,19 @@ const NavBar = () => {
           WELLNESS GYM  
           </Typography>
           
+          
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
                (page === 'Productos') ?
-                <><Button
+            <div key={page}>
+            <Button
                 style={{  marginRight: '10px', textDecoration: 'none', color: 'black', fontWeight: 700, textShadow: '1px 1px yellow', display: 'block' }}
                 id="fade-button"
                 aria-controls={open ? 'fade-menu' : undefined}
                 aria-haspopup="true"
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
-                key={page}
+                
               >
                 {page}
               </Button><Menu
@@ -150,7 +157,8 @@ const NavBar = () => {
                 </Link>
                   
                   
-                </Menu></>
+                </Menu>
+              </div>
                :
               <Link
                 style={{ marginRight: '10px', textDecoration: 'none', color: 'black', fontWeight: 700, textShadow: '1px 1px yellow', display: 'block' }}
