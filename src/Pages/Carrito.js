@@ -119,7 +119,7 @@ const Carrito = () =>{
             <Typography variant="subtitle2" component="div" >
                     Precio total: {total} clp
                 </Typography>
-            <Button variant='outlined' startIcon={<PaymentIcon />} style={{background: 'orange', color: 'black'}}> <Link to='/checkout' style={{textDecoration: 'none', color: 'black'}}>Pagar</Link></Button>
+            <Button variant='outlined' startIcon={<PaymentIcon />} style={{background: 'orange', color: 'black'}}> <Link to='/Pagar' style={{textDecoration: 'none', color: 'black'}}>Pagar</Link></Button>
             </Grid>
             </Paper>
             
