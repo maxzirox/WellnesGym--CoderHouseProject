@@ -5,12 +5,17 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useState } from 'react'
+import {addDoc, collection} from 'firebase/firestore'
+import dataBase from '../../utils/firebaseConfig'
+import TextField from '@mui/material/TextField';
+import { Button, Grid  } from '@mui/material'
+import Hours from '../Hours/Hours'
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
   
     return (
-      <div
+      <Grid
         role="tabpanel"
         hidden={value !== index}
         id={`simple-tabpanel-${index}`}
@@ -22,7 +27,7 @@ function TabPanel(props) {
             <Typography>{children}</Typography>
           </Box>
         )}
-      </div>
+      </Grid>
     );
   }
   
@@ -40,12 +45,21 @@ function TabPanel(props) {
   }
 
 const Schedule = () => {
+  
+  const [success, setSuccess] = useState()
+
+  const agendar = async (newAgenda) => {
+    const agendaFirebase = collection(dataBase, 'agenda')
+    const agendaDoc = await addDoc(agendaFirebase, newAgenda)
+    setSuccess(agendaDoc.id)
+  }
 
     const [value, setValue] = useState(0);
 
-    const handleChange = (event, newValue) => {
+    const handleChange = (e, newValue) => {
         setValue(newValue);
     };
+
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -60,22 +74,22 @@ const Schedule = () => {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Horarios Lunes
+        <Hours actualizar={agendar} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Horarios Martes
+        <Hours actualizar={agendar} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Horarios Miercoles
+        <Hours actualizar={agendar} />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Horarios Jueves
+        <Hours actualizar={agendar} />
       </TabPanel>
       <TabPanel value={value} index={4}>
-        Horarios Viernes
+        <Hours actualizar={agendar} />
       </TabPanel>
       <TabPanel value={value} index={5}>
-        Horarios Sabado
+        <Hours actualizar={agendar} /> 
       </TabPanel>
     </Box>
     )

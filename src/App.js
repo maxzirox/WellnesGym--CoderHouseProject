@@ -3,7 +3,6 @@ import NavBar from './components/NavBar/NavBar';
 import CardListContainer from './components/CardList/CardListContainer';
 import Pagar from './Pages/Pagar'
 import Banner from './components/Banner/Banner'
-
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 import Membresias from './Pages/Membresias';
 import Detalle from './Pages/Detalle'
@@ -13,7 +12,6 @@ import NotFound from './Pages/NotFound'
 import ProductList from './Pages/ProductList'
 import Agendar from './Pages/Agendar'
 import Carrito from './Pages/Carrito'
-import Review from './components/Payments/Review'
 import { CartProvider } from './context/CartContext'
 
 
@@ -47,7 +45,6 @@ function App() {
               <Route path="/Agendar" element={<Agendar />} />
               <Route path="/carrito" element={<Carrito />} />
               <Route path="/pagar" element={<Pagar />} />
-              <Route path="/orden" element={<Review />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>

@@ -18,8 +18,6 @@ const CartProvider = ({children}) => {
 
     const addProductToCart = (product) => {
         let isInCart = cartListItems.find(cartItem => cartItem.id === product.id)
-        let totalProductos
-        let totalFinal
         if(!isInCart){
              setCartListItems(cartListItems =>[...cartListItems, product])
              console.log(product.cantidad, "producto agregado: ", product )

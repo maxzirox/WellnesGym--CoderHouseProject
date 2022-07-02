@@ -10,6 +10,7 @@ import dataBase from '../../utils/firebaseConfig'
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+import { Link } from 'react-router-dom'
 
 
 const AddressForm = () =>{ 
@@ -43,14 +44,12 @@ const AddressForm = () =>{
      setOrder({...order, buyer: formValue})
      saveData({...order, buyer: formValue})
      setShowOrder(true)
-     console.log("succes: ",success)
   }
 
   const saveData = async (newOrder) => {
     const orderFirebase = collection(dataBase, 'ordenes')
     const orderDoc = await addDoc(orderFirebase, newOrder)
     setSuccess(orderDoc.id)
-    
   }
 
   const exit = () =>{
@@ -98,7 +97,7 @@ const AddressForm = () =>{
           </Grid> 
         </Grid>
         <Grid item xs={12} md={6}>
-      <Button type='button' onClick={exit} color="success" variant="contained">Volver</Button>
+      <Button type='button' onClick={exit} color="success" variant="contained"><Link to='/' style={{textDecoration: 'none', color: 'aliceblue'}}>Volver</Link></Button>
       </Grid>
             </div>
            : <div>
