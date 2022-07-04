@@ -5,8 +5,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useState } from 'react'
-import {addDoc, collection} from 'firebase/firestore'
-import dataBase from '../../utils/firebaseConfig'
+
 import TextField from '@mui/material/TextField';
 import { Button, Grid  } from '@mui/material'
 import Hours from '../Hours/Hours'
@@ -45,14 +44,6 @@ function TabPanel(props) {
   }
 
 const Schedule = () => {
-  
-  const [success, setSuccess] = useState()
-
-  const agendar = async (newAgenda) => {
-    const agendaFirebase = collection(dataBase, 'agenda')
-    const agendaDoc = await addDoc(agendaFirebase, newAgenda)
-    setSuccess(agendaDoc.id)
-  }
 
     const [value, setValue] = useState(0);
 
@@ -74,22 +65,22 @@ const Schedule = () => {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <Hours actualizar={agendar} />
+        <Hours  />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Hours actualizar={agendar} />
+        <Hours />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Hours actualizar={agendar} />
+        <Hours />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <Hours actualizar={agendar} />
+        <Hours/>
       </TabPanel>
       <TabPanel value={value} index={4}>
-        <Hours actualizar={agendar} />
+        <Hours/>
       </TabPanel>
       <TabPanel value={value} index={5}>
-        <Hours actualizar={agendar} /> 
+        <Hours/> 
       </TabPanel>
     </Box>
     )

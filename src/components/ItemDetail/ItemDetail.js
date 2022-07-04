@@ -14,7 +14,6 @@ const ItemDetail = ({ data }) => {
     const { addProductToCart } = useContext(CartContext)
 
     useEffect( () => {
-        console.log('itemdetail data: ', data)
         setStock(data.stock)
      }, [data.stock])
     
